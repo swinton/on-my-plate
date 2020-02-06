@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const nunjucks = require('nunjucks');
+const argv = require('minimist')(process.argv.slice(2));
 const logger = require('./lib/logger');
 const getViewer = require('./lib/get-viewer');
 const onMyPlate = require('./lib/on-my-plate');
@@ -7,8 +8,8 @@ const reportTemplate = require('./lib/report-template');
 
 (async () => {
   try {
-    const assignee = await getViewer();
-    logger.debug(`Logged in as ${assignee}`);
+    const assignee = argv.assignee || (await getViewer());
+    logger.debug(`Generating for ${assignee}`);
 
     const [high, medium, low, tbd] = await onMyPlate(assignee);
     logger.debug(`High priority items ${JSON.stringify(high, null, 4)}`);
