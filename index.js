@@ -1,7 +1,16 @@
+#!/usr/bin/env node
 const logger = require('./lib/logger');
+const getViewer = require('./lib/get-viewer');
+const onMyPlate = require('./lib/on-my-plate');
 
-const items = [1, 2, 3, 4, 5];
+(async () => {
+  try {
+    const assignee = await getViewer();
+    logger.debug(`Logged in as ${assignee}`);
 
-const sum = items.reduce((total, item) => total + item, 0);
-
-logger.info(sum);
+    const plate = await onMyPlate(assignee);
+    logger.debug(`Plate ${JSON.stringify(plate, null, 4)}`);
+  } catch (e) {
+    logger.error(e);
+  }
+})();
