@@ -17,7 +17,14 @@ const reportTemplate = require('./lib/report-template');
     logger.debug(`No assigned priority items ${JSON.stringify(tbd, null, 4)}`);
 
     // Render report
-    const report = nunjucks.renderString(reportTemplate, { assignee, high, medium, low, tbd });
+    const report = nunjucks.renderString(reportTemplate, {
+      assignee,
+      high,
+      medium,
+      low,
+      tbd,
+      now: new Date().toUTCString()
+    });
 
     // Write report to STDOUT
     process.stdout.write(report);
