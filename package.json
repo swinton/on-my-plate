@@ -16,6 +16,9 @@
     "test": "jest && eslint index.js 'lib/**.js' 'test/**.js'",
     "lint": "eslint index.js 'lib/**.js' 'test/**.js' --fix"
   },
+  "bin": {
+    "on-my-plate": "./index.js"
+  },
   "dependencies": {
     "@octokit/graphql": "^4.3.1",
     "bunyan": "^1.8.12",
