@@ -8,8 +8,11 @@ const onMyPlate = require('./lib/on-my-plate');
     const assignee = await getViewer();
     logger.debug(`Logged in as ${assignee}`);
 
-    const plate = await onMyPlate(assignee);
-    logger.debug(`Plate ${JSON.stringify(plate, null, 4)}`);
+    const [high, medium, low, noAssignedPriority] = await onMyPlate(assignee);
+    logger.debug(`High priority items ${JSON.stringify(high, null, 4)}`);
+    logger.debug(`Medium priority items ${JSON.stringify(medium, null, 4)}`);
+    logger.debug(`Low priority items ${JSON.stringify(low, null, 4)}`);
+    logger.debug(`No assigned priority items ${JSON.stringify(noAssignedPriority, null, 4)}`);
   } catch (e) {
     logger.error(e);
   }
