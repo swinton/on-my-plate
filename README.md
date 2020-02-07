@@ -4,7 +4,7 @@
 ## Usage
 
 ```shell
-export GITHUB_TOKEN="A personal access token"
+export GITHUB_TOKEN="A personal access token having 'repo:read' access"
 npx on-my-plate
 ```
 
